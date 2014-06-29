@@ -1,0 +1,34 @@
+{
+  "name": "where-does-this-run",
+  "version": "0.0.0",
+  "description": "dynamic analysis tool to determine what environments arbitrary JavaScript will run in",
+  "main": "patch.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "where-does-this-run": "cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/btford/where-does-this-run.git"
+  },
+  "keywords": [
+    "javascript",
+    "tool",
+    "dynamic",
+    "analysis",
+    "sup"
+  ],
+  "author": "Brian Ford <btford@umich.edu>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/btford/where-does-this-run/issues"
+  },
+  "homepage": "https://github.com/btford/where-does-this-run",
+  "dependencies": {
+    "chalk": "^0.4.0",
+    "es5-compat-table": "git://github.com/kangax/compat-table#gh-pages",
+    "falafel": "^0.3.1"
+  }
+}
