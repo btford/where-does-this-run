@@ -5,6 +5,7 @@ dynamic analysis tool to determine what environments arbitrary JavaScript will r
 **Note:** the best way to make sure code works on a given environment to write tests for it,
 and then run the tests on given environment.
 
+![screenshot of where-does-this-run in a terminal window](https://raw.githubusercontent.com/btford/where-does-this-run/master/screenshot.jpg)
 
 ## How?
 
