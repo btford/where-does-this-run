@@ -15,7 +15,7 @@ map(function (api) {
 var report = {};
 
 // a guard to ensure that internal functions do not call interesting methods
-var suspend = false;
+var suspend = true;
 
 
 /*
@@ -34,19 +34,16 @@ exports.patch = function (context) {
   context.console.log = function () {
     suspend = true;
     var ret = log.apply(this, arguments);
-    suspend = false;
     return ret;
   }
 
   var require = context.require;
   context.require = function () {
-    // suspend = true;
+    suspend = true;
     var ret = require.apply(this, arguments);
-    // suspend = false;
     return ret;
   }
 
-  suspend = false;
   return function unpatch () {
     while (unpatchFns.length > 0) {
       (unpatchFns.shift())();
@@ -59,6 +56,16 @@ exports.patch = function (context) {
  * returns a map of API name to whether or not the given API was called
  */
 exports.report = function () {
+  return {
+    browsers: exports.reportBrowsers(),
+    features: exports.reportFeatures()
+  };
+};
+
+/*
+ * returns a map of API name to whether or not the given API was called
+ */
+exports.reportFeatures = function () {
   return report;
 };
 
@@ -74,8 +81,14 @@ exports.reportBrowsers = function () {
     acc[prop] = true;
     return acc;
   }, {}));
-  suspend = false;
   return res;
+};
+
+exports.run = function (fn) {
+  suspend = false;
+  var ret = fn();
+  suspend = true;
+  return ret;
 };
 
 function deepAnd (a, b) {
@@ -91,6 +104,9 @@ function deepAnd (a, b) {
  */
 exports.reset = function reset () {
   report = {};
+  APIS.forEach(function (api) {
+    report[api] = false;
+  });
 };
 
 
