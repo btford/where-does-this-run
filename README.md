@@ -42,12 +42,17 @@ works like `node`:
 
 ```shell
 $ where-does-this-run some-script.js
+✗ IE 7
+✗ IE 8
+✔ IE 9
+…
 ```
 
 you can get JSON output like this:
 
 ```shell
 $ where-does-this-run some-script.js --json
+{"browsers":{"ie7":false,"ie8":false,"ie9":true,"ie10":true,"firefox3":false,"firefox3_5":false,"firefox4":true,…
 ```
 
 
