@@ -15,10 +15,10 @@ process.on('exit', function () {
   var report = patch.report();
   if (flags.json) {
     console.log(JSON.stringify(report));
+  } else if (flags.features) {
+    checkboxify(report.features, function (x) { return x; });
   } else {
-    Object.keys(report.browsers).forEach(function (browser) {
-      console.log(report.browsers[browser] ? GREEN_CHECK : RED_X, browserNamify(browser));
-    });
+    checkboxify(report.browsers, browserNamify);
   }
 });
 
@@ -29,6 +29,12 @@ var modules = process.argv.slice(2).filter(function (thing) {
 modules.forEach(function (mod) {
   require('./' + mod);
 });
+
+function checkboxify (obj, formatter) {
+  Object.keys(obj).forEach(function (key) {
+    console.log(obj[key] ? GREEN_CHECK : RED_X, formatter(key));
+  });
+}
 
 var BROWSER_RE = /^(.+?)([0-9_]+)?$/
 function browserNamify (name) {

@@ -55,6 +55,18 @@ $ where-does-this-run some-script.js --json
 {"browsers":{"ie7":false,"ie8":false,"ie9":true,"ie10":true,"firefox3":false,"firefox3_5":false,"firefox4":true,…
 ```
 
+you can get a list of features that the code uses like this:
+
+```shell
+$ where-does-this-run some-script.js --features
+✗ Object.create
+✗ Object.defineProperty
+✗ Object.defineProperties
+✗ Object.getPrototypeOf
+✔ Object.keys
+…
+```
+
 
 ## Caveats
 
