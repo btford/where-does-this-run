@@ -10,7 +10,6 @@ function patchAndReport(source) {
       node.update(patch + '.run(function() { return ' + node.source() + '; })');
     }
   });
-  //return 'require("' + __dirname + '/patch.js").patch(global);' + source + ';console.log(require("' + __dirname + '/patch.js").reportBrowsers());';
 }
 
 var IGNORED_FILES = [
