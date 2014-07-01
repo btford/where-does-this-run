@@ -15,6 +15,7 @@ function patchAndReport(source) {
 
 var IGNORED_FILES = [
   __dirname + '/node_modules/es5-compat-table/data-es5.js',
+  __dirname + '/node_modules/es5-compat-table/data-non-standard.js',
   __dirname + '/patch.js'
 ];
 
